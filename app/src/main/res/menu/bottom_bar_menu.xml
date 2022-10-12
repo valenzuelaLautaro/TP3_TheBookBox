@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/catalogueFragment"
+        android:icon="@drawable/catalogue_icon"
+        android:title="Catalogo" />
+    <item
+        android:id="@+id/favouriteBooksFragment"
+        android:icon="@drawable/favourite_icon"
+        android:title="Favoritos" />
+    <item
+        android:id="@+id/myAccountFragment"
+        android:icon="@drawable/my_account_icon"
+        android:title="Mi cuenta" />
+</menu>
