@@ -17,13 +17,16 @@ class CatalogueAdapter (var bookList: MutableList<Book>, ) : RecyclerView.Adapte
         init {
             view = v
         }
-        fun setBook(name: String, author: String, image: String){
+        fun setBook(name: String, author: String){
             var bookName : TextView = view.findViewById(R.id.bookName)
             var bookAuthor : TextView = view.findViewById(R.id.bookAuthor)
-            var bookImage : ImageView = view.findViewById(R.id.bookImage)
 
             bookName.text = name
             bookAuthor.text = author
+
+        }
+        fun setFrontPage(image: String){
+            var bookImage : ImageView = view.findViewById(R.id.bookImage)
             Glide.with(view).load(image).centerCrop().into(bookImage)
         }
     }
@@ -34,7 +37,8 @@ class CatalogueAdapter (var bookList: MutableList<Book>, ) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: CatalogueHolder, position: Int) {
-        holder.setBook(bookList[position].nombre, bookList[position].autor, bookList[position].urlImage)
+        holder.setBook(bookList[position].nombre, bookList[position].autor)
+        holder.setFrontPage(bookList[position].urlImage)
     }
 
     override fun getItemCount(): Int {

@@ -8,19 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.tp3.tp3_thebookbox.R
-import com.tp3.tp3_thebookbox.databinding.FragmentMyAccountBinding
-import com.tp3.tp3_thebookbox.viewModels.MyAccountViewModel
+import com.tp3.tp3_thebookbox.databinding.FragmentMyBooksBinding
+import com.tp3.tp3_thebookbox.viewModels.MyBooksViewModel
 
-class MyAccountFragment : Fragment() {
+class MyBooksFragment : Fragment() {
 
-    private lateinit var binding: FragmentMyAccountBinding
-    private val viewModel: MyAccountViewModel by viewModels()
+    private lateinit var binding: FragmentMyBooksBinding
+    private val viewModel: MyBooksViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMyAccountBinding.inflate(inflater, container, false)
+        binding = FragmentMyBooksBinding.inflate(inflater, container, false)
 
         return binding.root
     }

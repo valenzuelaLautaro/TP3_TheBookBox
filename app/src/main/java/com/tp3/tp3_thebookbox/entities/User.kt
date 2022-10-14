@@ -8,6 +8,7 @@ class User (var id: Int,
             var password: String,
             var urlImage: String,
             var fechaNacimiento: Date,
+            var telefono: String,
             var librosFavoritos: MutableList<Book>,
             var misLibros: MutableList<Book>) {
 

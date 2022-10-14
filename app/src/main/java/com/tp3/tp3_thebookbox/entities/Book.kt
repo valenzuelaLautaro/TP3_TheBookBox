@@ -8,6 +8,7 @@ class Book (var id: Int,
             var edicion: Date,
             var genero: String,
             var editorial: String,
-            var urlImage: String) {
+            var urlImage: String,
+            var publicador: User) {
 
 }

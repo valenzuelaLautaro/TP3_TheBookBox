@@ -2,7 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_nav_graph">
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/catalogueFragment"
@@ -17,7 +18,11 @@
         android:id="@+id/myAccountFragment"
         android:name="com.tp3.tp3_thebookbox.fragments.MyAccountFragment"
         android:label="fragment_my_account"
-        tools:layout="@layout/fragment_my_account" />
+        tools:layout="@layout/fragment_my_account" >
+        <action
+            android:id="@+id/action_myAccountFragment_to_myBooksFragment"
+            app:destination="@id/myBooksFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favouriteBooksFragment"
         android:name="com.tp3.tp3_thebookbox.fragments.FavouriteBooksFragment"
@@ -32,4 +37,14 @@
         android:name="com.tp3.tp3_thebookbox.fragments.BookDetailFragment"
         android:label="fragment_book_detail"
         tools:layout="@layout/fragment_book_detail" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.tp3.tp3_thebookbox.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/myBooksFragment"
+        android:name="com.tp3.tp3_thebookbox.fragments.MyBooksFragment"
+        android:label="fragment_my_books"
+        tools:layout="@layout/fragment_my_books" />
 </navigation>

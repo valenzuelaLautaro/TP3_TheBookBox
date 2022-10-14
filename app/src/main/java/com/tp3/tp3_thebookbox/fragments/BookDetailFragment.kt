@@ -6,29 +6,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.tp3.tp3_thebookbox.R
 import com.tp3.tp3_thebookbox.databinding.ActivityMainBinding
+import com.tp3.tp3_thebookbox.databinding.FragmentBookDetailBinding
+import com.tp3.tp3_thebookbox.databinding.FragmentCatalogueBinding
 import com.tp3.tp3_thebookbox.viewModels.BookDetailViewModel
 
 class BookDetailFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = BookDetailFragment()
-    }
-
-    private lateinit var viewModel: BookDetailViewModel
+    private lateinit var binding: FragmentBookDetailBinding
+    private val viewModel: BookDetailViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_book_detail, container, false)
+        binding = FragmentBookDetailBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(BookDetailViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun onStart() {
+        super.onStart()
     }
-
 }
