@@ -1,19 +1,19 @@
 package com.tp3.tp3_thebookbox.viewModels
 
 import androidx.lifecycle.ViewModel
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
-import com.tp3.tp3_thebookbox.R
-import com.tp3.tp3_thebookbox.activities.MainActivity
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.tp3.tp3_thebookbox.adapters.CatalogueAdapter
 import com.tp3.tp3_thebookbox.databinding.FragmentCatalogueBinding
 import com.tp3.tp3_thebookbox.entities.Book
 import com.tp3.tp3_thebookbox.entities.User
-import com.tp3.tp3_thebookbox.fragments.BookDetailFragmentArgs
 import com.tp3.tp3_thebookbox.fragments.CatalogueFragmentDirections
 import java.sql.Date
 
 class CatalogueViewModel : ViewModel() {
+
+    val db = Firebase.firestore
     lateinit var adapter : CatalogueAdapter
 
     var bookList : MutableList<Book> = mutableListOf()
@@ -31,6 +31,10 @@ class CatalogueViewModel : ViewModel() {
     }
     fun onItemSelected(book: Book, binding: FragmentCatalogueBinding){
         val action = CatalogueFragmentDirections.actionCatalogueFragmentToBookDetailFragment(book)
+        binding.root.findNavController().navigate(action)
+    }
+    fun addBook(binding: FragmentCatalogueBinding){
+        val action = CatalogueFragmentDirections.actionCatalogueFragmentToAddBookFragment()
         binding.root.findNavController().navigate(action)
     }
 }

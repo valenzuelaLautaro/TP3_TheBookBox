@@ -39,8 +39,14 @@ class CatalogueFragment : Fragment() {
         binding.recyclerCatalogo.setHasFixedSize(true)
         binding.recyclerCatalogo.layoutManager = LinearLayoutManager(context)
 
-        viewModel.adapter = CatalogueAdapter(viewModel.bookList, { book -> viewModel.onItemSelected(book, binding) })
+        viewModel.adapter = CatalogueAdapter(
+            viewModel.bookList,
+            { book -> viewModel.onItemSelected(book, binding) })
         binding.recyclerCatalogo.adapter = viewModel.adapter
+
+        binding.addBookButton.setOnClickListener {
+            viewModel.addBook(binding)
+        }
     }
 
 }

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_catalogueFragment_to_bookDetailFragment"
             app:destination="@id/bookDetailFragment" />
+        <action
+            android:id="@+id/action_catalogueFragment_to_addBookFragment"
+            app:destination="@id/addBookFragment" />
     </fragment>
     <fragment
         android:id="@+id/myAccountFragment"
@@ -72,4 +75,9 @@
             android:id="@+id/action_logInFragment_to_createAccountFragment"
             app:destination="@id/createAccountFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addBookFragment"
+        android:name="com.tp3.tp3_thebookbox.fragments.AddBookFragment"
+        android:label="fragment_add_book"
+        tools:layout="@layout/fragment_add_book" />
 </navigation>

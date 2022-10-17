@@ -34,7 +34,7 @@
         android:layout_width="356dp"
         android:layout_height="48dp"
         android:layout_margin="2dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="Buscar libro por nombre..."
         android:inputType="text"
@@ -47,12 +47,22 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCatalogo"
         android:layout_width="0dp"
-        android:layout_height="574dp"
+        android:layout_height="483dp"
+        android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/addBookButton"
+        android:layout_width="55dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="80dp"
+        android:text="+"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
