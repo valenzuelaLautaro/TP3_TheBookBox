@@ -1,9 +1,16 @@
 package com.tp3.tp3_thebookbox.viewModels
 
 import androidx.lifecycle.ViewModel
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
+import com.tp3.tp3_thebookbox.R
+import com.tp3.tp3_thebookbox.activities.MainActivity
 import com.tp3.tp3_thebookbox.adapters.CatalogueAdapter
+import com.tp3.tp3_thebookbox.databinding.FragmentCatalogueBinding
 import com.tp3.tp3_thebookbox.entities.Book
 import com.tp3.tp3_thebookbox.entities.User
+import com.tp3.tp3_thebookbox.fragments.BookDetailFragmentArgs
+import com.tp3.tp3_thebookbox.fragments.CatalogueFragmentDirections
 import java.sql.Date
 
 class CatalogueViewModel : ViewModel() {
@@ -21,5 +28,9 @@ class CatalogueViewModel : ViewModel() {
         bookList.add(book1)
         bookList.add(book2)
         bookList.add(book3)
+    }
+    fun onItemSelected(book: Book, binding: FragmentCatalogueBinding){
+        val action = CatalogueFragmentDirections.actionCatalogueFragmentToBookDetailFragment(book)
+        binding.root.findNavController().navigate(action)
     }
 }

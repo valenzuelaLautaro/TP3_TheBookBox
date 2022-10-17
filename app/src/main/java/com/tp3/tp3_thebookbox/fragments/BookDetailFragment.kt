@@ -29,5 +29,6 @@ class BookDetailFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        viewModel.setBookDetail(BookDetailFragmentArgs.fromBundle(requireArguments()).bookSelected, binding)
     }
 }

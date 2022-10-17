@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.tp3.tp3_thebookbox.R
 import com.tp3.tp3_thebookbox.entities.Book
 
-class CatalogueAdapter (var bookList: MutableList<Book>, ) : RecyclerView.Adapter<CatalogueAdapter.CatalogueHolder>(){
+class CatalogueAdapter (var bookList: MutableList<Book>, private val onClickListener:(Book) -> Unit) : RecyclerView.Adapter<CatalogueAdapter.CatalogueHolder>(){
 
     class CatalogueHolder(v: View, ) : RecyclerView.ViewHolder(v) {
         private var view : View
@@ -39,6 +39,9 @@ class CatalogueAdapter (var bookList: MutableList<Book>, ) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: CatalogueHolder, position: Int) {
         holder.setBook(bookList[position].nombre, bookList[position].autor)
         holder.setFrontPage(bookList[position].urlImage)
+        holder.itemView.setOnClickListener{
+            onClickListener(bookList[position])
+        }
     }
 
     override fun getItemCount(): Int {
