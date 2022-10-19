@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.tp3.tp3_thebookbox.R
 import com.tp3.tp3_thebookbox.entities.Book
 
-class MyBooksAdapter (var bookList: MutableList<Book>): RecyclerView.Adapter<MyBooksAdapter.MyBooksHolder>(){
+class MyBooksAdapter (var bookList: MutableList<Book>, var onClickListener: (Book) -> Unit): RecyclerView.Adapter<MyBooksAdapter.MyBooksHolder>(){
 
     class MyBooksHolder(v: View, ) : RecyclerView.ViewHolder(v){
         private var view : View

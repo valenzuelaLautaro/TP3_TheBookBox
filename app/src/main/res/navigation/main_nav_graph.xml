@@ -88,5 +88,9 @@
         android:id="@+id/myBookInformationFragment"
         android:name="com.tp3.tp3_thebookbox.fragments.MyBookInformationFragment"
         android:label="fragment_my_book_information"
-        tools:layout="@layout/fragment_my_book_information" />
+        tools:layout="@layout/fragment_my_book_information" >
+        <argument
+            android:name="myBookSelected"
+            app:argType="com.tp3.tp3_thebookbox.entities.Book" />
+    </fragment>
 </navigation>

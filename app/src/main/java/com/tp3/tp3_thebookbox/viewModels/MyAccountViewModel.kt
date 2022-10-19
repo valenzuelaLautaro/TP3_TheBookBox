@@ -1,7 +1,16 @@
 package com.tp3.tp3_thebookbox.viewModels
 
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
+import com.tp3.tp3_thebookbox.databinding.FragmentMyAccountBinding
+import com.tp3.tp3_thebookbox.fragments.MyAccountFragment
+import com.tp3.tp3_thebookbox.fragments.MyAccountFragmentDirections
 
 class MyAccountViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+
+    fun navigateToBookList (binding: FragmentMyAccountBinding){
+        var action = MyAccountFragmentDirections.actionMyAccountFragmentToMyBooksFragment()
+        binding.root.findNavController().navigate(action)
+    }
+
 }

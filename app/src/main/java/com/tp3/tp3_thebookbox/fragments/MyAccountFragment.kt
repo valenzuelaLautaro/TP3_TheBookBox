@@ -27,5 +27,8 @@ class MyAccountFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        binding.misLibrosButton.setOnClickListener {
+            viewModel.navigateToBookList(binding)
+        }
     }
 }

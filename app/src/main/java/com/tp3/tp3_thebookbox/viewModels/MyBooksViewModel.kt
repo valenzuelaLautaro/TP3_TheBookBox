@@ -1,9 +1,14 @@
 package com.tp3.tp3_thebookbox.viewModels
 
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
 import com.tp3.tp3_thebookbox.adapters.MyBooksAdapter
+import com.tp3.tp3_thebookbox.databinding.FragmentCatalogueBinding
+import com.tp3.tp3_thebookbox.databinding.FragmentMyBooksBinding
 import com.tp3.tp3_thebookbox.entities.Book
 import com.tp3.tp3_thebookbox.entities.User
+import com.tp3.tp3_thebookbox.fragments.MyBooksFragment
+import com.tp3.tp3_thebookbox.fragments.MyBooksFragmentDirections
 import java.sql.Date
 
 class MyBooksViewModel : ViewModel() {
@@ -29,5 +34,9 @@ class MyBooksViewModel : ViewModel() {
         bookList.add(book3)
     }
 
+    fun onItemSelected(book: Book, binding: FragmentMyBooksBinding){
+        var action = MyBooksFragmentDirections.actionMyBooksFragmentToMyBookInformationFragment(book)
+        binding.root.findNavController().navigate(action)
+    }
 
 }
