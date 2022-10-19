@@ -29,6 +29,9 @@ class CatalogueViewModel : ViewModel() {
         bookList.add(book2)
         bookList.add(book3)
     }
+
+    //aca me quede, debo copiar esta funcion con la navegacion del fragment y que el fragment se lo pase al
+    //adapter cuando se instancia
     fun onItemSelected(book: Book, binding: FragmentCatalogueBinding){
         val action = CatalogueFragmentDirections.actionCatalogueFragmentToBookDetailFragment(book)
         binding.root.findNavController().navigate(action)

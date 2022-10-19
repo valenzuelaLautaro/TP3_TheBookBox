@@ -62,6 +62,7 @@
         android:layout_marginBottom="80dp"
         android:text="+"
         android:textSize="34sp"
+        app:cornerRadius="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

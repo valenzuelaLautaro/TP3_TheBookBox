@@ -44,6 +44,7 @@ class CatalogueFragment : Fragment() {
             { book -> viewModel.onItemSelected(book, binding) })
         binding.recyclerCatalogo.adapter = viewModel.adapter
 
+        //metodo para agregar un nuevo libro al catalogo : subir una publicacion nueva
         binding.addBookButton.setOnClickListener {
             viewModel.addBook(binding)
         }

@@ -7,7 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.tp3.tp3_thebookbox.R
+import com.tp3.tp3_thebookbox.adapters.CatalogueAdapter
+import com.tp3.tp3_thebookbox.adapters.MyBooksAdapter
 import com.tp3.tp3_thebookbox.databinding.FragmentMyBooksBinding
 import com.tp3.tp3_thebookbox.viewModels.MyBooksViewModel
 
@@ -21,11 +24,16 @@ class MyBooksFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentMyBooksBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
+
+        binding.recyclerMyBooks.setHasFixedSize(true)
+        binding.recyclerMyBooks.layoutManager = LinearLayoutManager(requireContext())
+
+        viewModel.adapter = MyBooksAdapter(viewModel.bookList)
+        binding.recyclerMyBooks.adapter = viewModel.adapter
     }
 }

@@ -53,7 +53,11 @@
         android:id="@+id/myBooksFragment"
         android:name="com.tp3.tp3_thebookbox.fragments.MyBooksFragment"
         android:label="fragment_my_books"
-        tools:layout="@layout/fragment_my_books" />
+        tools:layout="@layout/fragment_my_books" >
+        <action
+            android:id="@+id/action_myBooksFragment_to_myBookInformationFragment"
+            app:destination="@id/myBookInformationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createAccountFragment"
         android:name="com.tp3.tp3_thebookbox.fragments.CreateAccountFragment"
@@ -80,4 +84,9 @@
         android:name="com.tp3.tp3_thebookbox.fragments.AddBookFragment"
         android:label="fragment_add_book"
         tools:layout="@layout/fragment_add_book" />
+    <fragment
+        android:id="@+id/myBookInformationFragment"
+        android:name="com.tp3.tp3_thebookbox.fragments.MyBookInformationFragment"
+        android:label="fragment_my_book_information"
+        tools:layout="@layout/fragment_my_book_information" />
 </navigation>
