@@ -7,7 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.tp3.tp3_thebookbox.R
+import com.tp3.tp3_thebookbox.adapters.CatalogueAdapter
+import com.tp3.tp3_thebookbox.adapters.FavsAdapter
 import com.tp3.tp3_thebookbox.databinding.FragmentFavouriteBooksBinding
 import com.tp3.tp3_thebookbox.viewModels.FavouriteBooksViewModel
 
@@ -27,5 +30,16 @@ class FavouriteBooksFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+        viewModel.addBooks()
+
+        binding.recyclerCatalogo.setHasFixedSize(true)
+        binding.recyclerCatalogo.layoutManager = LinearLayoutManager(context)
+
+        viewModel.adapter = FavsAdapter(
+            viewModel.bookList,
+            { book -> viewModel.onItemSelected(book, binding) })
+        binding.recyclerCatalogo.adapter = viewModel.adapter
+
     }
 }
