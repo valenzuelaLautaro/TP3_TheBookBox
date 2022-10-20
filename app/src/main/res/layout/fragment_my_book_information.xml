@@ -10,9 +10,12 @@
 
     <ImageView
         android:id="@+id/myBookphoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
         android:layout_marginTop="32dp"
+        android:layout_marginBottom="52dp"
+        app:layout_constraintBottom_toTopOf="@+id/myBookName"
+        app:layout_constraintDimensionRatio="w,4:3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,52 +37,57 @@
         android:id="@+id/myBookAuthor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="Autor: Book Author"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="282dp" />
+        app:layout_constraintTop_toBottomOf="@+id/myBookName" />
 
     <TextView
         android:id="@+id/myBookEditorial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="Editorial: Book Editorial"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="335dp" />
+        app:layout_constraintTop_toBottomOf="@+id/myBookAuthor" />
 
     <TextView
         android:id="@+id/myBookYear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="Año: 1990"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="380dp" />
+        app:layout_constraintTop_toBottomOf="@+id/myBookEditorial" />
 
     <ImageView
         android:id="@+id/myBookStar"
         android:layout_width="47dp"
         android:layout_height="43dp"
         android:layout_marginStart="100dp"
+        android:layout_marginTop="24dp"
         android:src="@drawable/favourite_icon"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="440dp" />
+        app:layout_constraintTop_toBottomOf="@+id/myBookYear" />
 
     <TextView
         android:id="@+id/myBookReputation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
         android:text="Reputation"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/myBookStar"
-        tools:layout_editor_absoluteY="438dp" />
+        app:layout_constraintTop_toBottomOf="@+id/myBookYear" />
 
     <TextView
         android:id="@+id/myBookComments"
@@ -95,10 +103,11 @@
         android:id="@+id/myBookText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="67dp"
         android:text="Comments"
         android:textSize="12sp"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        tools:layout_editor_absoluteX="73dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
