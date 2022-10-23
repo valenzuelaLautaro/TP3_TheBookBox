@@ -10,13 +10,16 @@ import androidx.fragment.app.viewModels
 import androidx.viewbinding.ViewBinding
 import com.tp3.tp3_thebookbox.R
 import com.tp3.tp3_thebookbox.databinding.FragmentAddBookBinding
+import com.tp3.tp3_thebookbox.entities.Book
 import com.tp3.tp3_thebookbox.viewModels.AddBookViewModel
+import com.tp3.tp3_thebookbox.viewModels.CatalogueViewModel
 import java.sql.*
 
 class AddBookFragment : Fragment() {
 
     private lateinit var binding: FragmentAddBookBinding
-    private val viewModel: AddBookViewModel by viewModels()
+    private val viewModel: CatalogueViewModel by viewModels()
+    private var idBook: Int = 5
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +34,20 @@ class AddBookFragment : Fragment() {
         super.onStart()
 
         binding.publishBookButton.setOnClickListener {
-            viewModel.addBook()
+            /*val book = Book(idBook, binding.inputTitle.text.toString(),
+                binding.inputAutor.text.toString(),
+                Date(binding.inputEdicion.text.toString().toInt().toLong()),
+                binding.inputGenero.text.toString(),
+                binding.inputEditorial.text.toString(),
+                binding.inputUrlImage.text.toString(),
+                null)*/
+
+            if(viewModel.validateForm(binding)){
+                //viewModel.publishBook(book)
+                println("TODO OK")
+            }
+
+            idBook++
         }
     }
 }

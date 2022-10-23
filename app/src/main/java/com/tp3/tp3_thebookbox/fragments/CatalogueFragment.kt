@@ -34,10 +34,10 @@ class CatalogueFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        viewModel.addBooks()
+        viewModel.getAllBooks()
 
         binding.recyclerCatalogo.setHasFixedSize(true)
-        binding.recyclerCatalogo.layoutManager = LinearLayoutManager(context)
+        binding.recyclerCatalogo.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.adapter = CatalogueAdapter(
             viewModel.bookList,
