@@ -34,19 +34,23 @@ class AddBookFragment : Fragment() {
         super.onStart()
 
         binding.publishBookButton.setOnClickListener {
-            /*val book = Book(idBook, binding.inputTitle.text.toString(),
+
+
+            val book = Book(idBook, binding.inputTitle.text.toString(),
                 binding.inputAutor.text.toString(),
                 Date(binding.inputEdicion.text.toString().toInt().toLong()),
                 binding.inputGenero.text.toString(),
                 binding.inputEditorial.text.toString(),
                 binding.inputUrlImage.text.toString(),
-                null)*/
+                null)
+
 
             if(viewModel.validateForm(binding)){
-                //viewModel.publishBook(book)
+                viewModel.publishBook(book)
+                viewModel.uploadBook()
+                viewModel.uploadPhoto()
                 println("TODO OK")
             }
-
             idBook++
         }
     }

@@ -5,7 +5,8 @@ import kotlinx.parcelize.Parcelize
 import java.util.Date
 
 @Parcelize
-class Book (var nombre: String = "",
+class Book (var id: Int = -1,
+            var nombre: String = "",
             var autor: String = "",
             var edicion: Date? = null,
             var genero: String = "",
