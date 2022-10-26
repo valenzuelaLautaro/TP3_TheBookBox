@@ -27,5 +27,7 @@ class LogInFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+        viewModel.getUser("lautarovalenzuela94@gmail.com")
     }
 }

@@ -12,4 +12,8 @@ class User (var nombre: String = "",
             var fechaNacimiento: Date? = null,
             var telefono: String = "") : Parcelable {
 
+                init {
+                    val myBooks = mutableListOf<String>()
+                    val favBooks = mutableListOf<String>()
+                }
 }

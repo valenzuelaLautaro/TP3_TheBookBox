@@ -12,5 +12,8 @@ class MyAccountViewModel : ViewModel() {
         var action = MyAccountFragmentDirections.actionMyAccountFragmentToMyBooksFragment()
         binding.root.findNavController().navigate(action)
     }
-
+    fun logout (binding: FragmentMyAccountBinding){
+        var action = MyAccountFragmentDirections.actionMyAccountFragmentToLogInFragment2()
+        binding.root.findNavController().navigate(action)
+    }
 }

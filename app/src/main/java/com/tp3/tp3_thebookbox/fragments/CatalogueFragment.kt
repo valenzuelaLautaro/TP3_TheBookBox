@@ -1,26 +1,20 @@
 package com.tp3.tp3_thebookbox.fragments
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.tp3.tp3_thebookbox.R
 import com.tp3.tp3_thebookbox.adapters.CatalogueAdapter
 import com.tp3.tp3_thebookbox.databinding.FragmentCatalogueBinding
-import com.tp3.tp3_thebookbox.entities.Book
-import com.tp3.tp3_thebookbox.entities.User
 import com.tp3.tp3_thebookbox.viewModels.CatalogueViewModel
-import java.sql.Date
 
 class CatalogueFragment : Fragment() {
 
     private lateinit var binding: FragmentCatalogueBinding
-    private val viewModel: CatalogueViewModel by viewModels()
+    private val viewModel: CatalogueViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -30,5 +30,8 @@ class MyAccountFragment : Fragment() {
         binding.misLibrosButton.setOnClickListener {
             viewModel.navigateToBookList(binding)
         }
+        binding.logoutButton.setOnClickListener {
+            viewModel.logout(binding)
+        }
     }
 }
