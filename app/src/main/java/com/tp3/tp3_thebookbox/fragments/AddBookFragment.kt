@@ -1,25 +1,26 @@
 package com.tp3.tp3_thebookbox.fragments
 
-import androidx.lifecycle.ViewModelProvider
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.viewbinding.ViewBinding
-import com.tp3.tp3_thebookbox.R
 import com.tp3.tp3_thebookbox.databinding.FragmentAddBookBinding
-import com.tp3.tp3_thebookbox.entities.Book
-import com.tp3.tp3_thebookbox.viewModels.AddBookViewModel
 import com.tp3.tp3_thebookbox.viewModels.CatalogueViewModel
 import java.sql.*
+
 
 class AddBookFragment : Fragment() {
 
     private lateinit var binding: FragmentAddBookBinding
     private val viewModel: CatalogueViewModel by viewModels()
     private var idBook: Int = 5
+    // Request code for selecting a PDF document.
+    private val PICK_IMG_FILE = 1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,15 +34,19 @@ class AddBookFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        binding.inputUrlImage.setOnClickListener {
+            openFile()
+        }
+
         binding.publishBookButton.setOnClickListener {
 
-
+            /*
             val book = Book(idBook, binding.inputTitle.text.toString(),
                 binding.inputAutor.text.toString(),
                 Date(binding.inputEdicion.text.toString().toInt().toLong()),
                 binding.inputGenero.text.toString(),
                 binding.inputEditorial.text.toString(),
-                binding.inputUrlImage.text.toString(),
+                imagePath,
                 null)
 
 
@@ -50,8 +55,35 @@ class AddBookFragment : Fragment() {
                 viewModel.uploadBook()
                 viewModel.uploadPhoto()
                 println("TODO OK")
-            }
+            }*/
             idBook++
+        }
+    }
+
+
+    private fun openFile() {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+            addCategory(Intent.CATEGORY_OPENABLE)
+            type = "image/*"
+
+            // Optionally, specify a URI for the file that should appear in the
+            // system file picker when it loads.
+            //putExtra(DocumentsContract.EXTRA_INITIAL_URI, pickerInitialUri)
+        }
+        startActivityForResult(intent, PICK_IMG_FILE)
+    }
+    override fun onActivityResult(
+        requestCode: Int, resultCode: Int, resultData: Intent?) {
+        if (requestCode == PICK_IMG_FILE && resultCode == Activity.RESULT_OK) {
+            // The result data contains a URI for the document or directory that
+            // the user selected.
+            resultData?.data?.also { uri ->
+                // Perform operations on the document using its URI.
+                binding.portada.setImageURI(uri)
+                viewModel.uploadPhoto(uri.toString())
+                Log.d("el uri","Aca tenes la URI: $uri")
+                // D/el uri: Aca tenes la URI: content://com.android.providers.media.documents/document/image%3A32
+            }
         }
     }
 }

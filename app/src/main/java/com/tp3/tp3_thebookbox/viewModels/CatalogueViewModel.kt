@@ -95,10 +95,11 @@ class CatalogueViewModel : ViewModel() {
     fun uploadBook(){
 
     }
-    fun uploadPhoto(){
-        var file = Uri.fromFile(File("path/to/images/portada.jpg"))
-        val portadaRef = storageRef.child("Portadas/${file.lastPathSegment}")
+    fun uploadPhoto(path:String){
+        var file = Uri.fromFile(File(path))
+        val portadaRef = storageRef.child("images/${file.lastPathSegment}")
         val uploadTask = portadaRef.putFile(file)
+        var downloadUri: String
 
         val urlTask = uploadTask.continueWithTask { task ->
             if (!task.isSuccessful) {
@@ -109,10 +110,12 @@ class CatalogueViewModel : ViewModel() {
             portadaRef.downloadUrl
         }.addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                val downloadUri = task.result
+                downloadUri = task.result.toString()
+                Log.d("URI FIREBASE","LA URI ES: $downloadUri")
             } else {
                 // Handle failures
                 // ...
+                Log.d("error","Error al enviar foto a Firebase")
             }
         }
     }
