@@ -30,5 +30,8 @@ class BookDetailFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         viewModel.setBookDetail(BookDetailFragmentArgs.fromBundle(requireArguments()).bookSelected, binding)
+        binding.deleteButton.setOnClickListener {
+            viewModel.deleteBook(BookDetailFragmentArgs.fromBundle(requireArguments()).bookSelected)
+        }
     }
 }

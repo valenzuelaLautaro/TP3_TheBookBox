@@ -1,18 +1,14 @@
 package com.tp3.tp3_thebookbox.viewModels
 
-import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.net.Uri
 import android.util.Log
-import android.widget.ArrayAdapter
 import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
-import com.bumptech.glide.Glide.init
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import com.tp3.tp3_thebookbox.R
 import com.tp3.tp3_thebookbox.adapters.CatalogueAdapter
 import com.tp3.tp3_thebookbox.databinding.FragmentAddBookBinding
 import com.tp3.tp3_thebookbox.databinding.FragmentCatalogueBinding
@@ -33,15 +29,9 @@ class CatalogueViewModel : ViewModel() {
 
     val user = User("Lautaro Valenzuela", "lautarovalenzuela94@gmail.com", "callefalsa123", "https://i.pinimg.com/736x/b9/fd/20/b9fd20744ad6f008787ffed46a0b7149--s-cartoons-bart-simpson.jpg", Date(27/12/2001), "1166517457")
 
-    var book1 = Book(0,"La iliada", "Homero", Date(27/12/2001), "Guerra", "Ninguna", "https://global-uploads.webflow.com/6034d7d1f3e0f52c50b2adee/62542902e650b33bf6b7a912_60e710db1c3ed16b7bfff0df_9788418008962_Cub.jpeg", user)
-    var book2 = Book(1,"La vuelta al mundo", "Julio Verne", Date(18/12/2000), "Aventura", "Viajeros", "https://www.tematika.com/media/catalog/Ilhsa/Imagenes/673611.jpg", user)
-    var book3 = Book(2,"Martin Fierro", "Jose Hernandez", Date(19/6/2003), "Aventura", "Gauchos Anonimos", "https://imgserver1.fierro.com.ar/get/thumb/188/272/HERCI-QUE9879246276=9789879246276.jpg?randomize=1", user)
-
-    fun addBooks(){
-        bookList.add(book1)
-        bookList.add(book2)
-        bookList.add(book3)
-    }
+    var book1 = Book(0,"La iliada", "Homero", Date(27/12/2001), "Guerra", "Ninguna", "https://global-uploads.webflow.com/6034d7d1f3e0f52c50b2adee/62542902e650b33bf6b7a912_60e710db1c3ed16b7bfff0df_9788418008962_Cub.jpeg", user.email)
+    var book2 = Book(1,"La vuelta al mundo", "Julio Verne", Date(18/12/2000), "Aventura", "Viajeros", "https://www.tematika.com/media/catalog/Ilhsa/Imagenes/673611.jpg", user.email)
+    var book3 = Book(2,"Martin Fierro", "Jose Hernandez", Date(19/6/2003), "Aventura", "Gauchos Anonimos", "https://imgserver1.fierro.com.ar/get/thumb/188/272/HERCI-QUE9879246276=9789879246276.jpg?randomize=1", user.email)
 
     fun onItemSelected(book: Book, binding: FragmentCatalogueBinding){
         val action = CatalogueFragmentDirections.actionCatalogueFragmentToBookDetailFragment(book)
@@ -99,6 +89,7 @@ class CatalogueViewModel : ViewModel() {
         var file = Uri.fromFile(File("path/to/images/portada.jpg"))
         val portadaRef = storageRef.child("Portadas/${file.lastPathSegment}")
         val uploadTask = portadaRef.putFile(file)
+        var downloadUri : String
 
         val urlTask = uploadTask.continueWithTask { task ->
             if (!task.isSuccessful) {
@@ -109,7 +100,7 @@ class CatalogueViewModel : ViewModel() {
             portadaRef.downloadUrl
         }.addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                val downloadUri = task.result
+                 downloadUri = task.result.toString()
             } else {
                 // Handle failures
                 // ...

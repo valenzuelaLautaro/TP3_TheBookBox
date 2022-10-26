@@ -12,6 +12,6 @@ class Book (var id: Int = -1,
             var genero: String = "",
             var editorial: String = "",
             var urlImage: String = "",
-            var publicador: User? = null) : Parcelable{
+            var idUser: String = "") : Parcelable{
 
 }

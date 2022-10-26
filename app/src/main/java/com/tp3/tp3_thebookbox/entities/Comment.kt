@@ -5,7 +5,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 class Comment (var texto: String,
-               var cantEstrellas: String,
-               var publicador: User) : Parcelable {
+               var cantEstrellas: Int,
+               var idUsuario: String,
+               var idLibro: Int) : Parcelable {
 
 }
