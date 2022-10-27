@@ -95,10 +95,9 @@ class CatalogueViewModel : ViewModel() {
     fun uploadBook(){
 
     }
-    fun uploadPhoto(path:String){
-        var file = Uri.fromFile(File(path))
-        val portadaRef = storageRef.child("images/${file.lastPathSegment}")
-        val uploadTask = portadaRef.putFile(file)
+    fun uploadPhoto(path:Uri){
+        val portadaRef = storageRef.child("images/${path.lastPathSegment}")
+        val uploadTask = portadaRef.putFile(path)
         var downloadUri: String
 
         val urlTask = uploadTask.continueWithTask { task ->

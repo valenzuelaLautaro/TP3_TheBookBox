@@ -25,7 +25,7 @@ class LogInViewModel : ViewModel() {
                         user = document.toObject<User>()
                     }
                 }
-                Log.d(TAG,"USUARIO ENCONTRADO EXITOSAMENTE: " + user.toString())
+                Log.d(TAG,"USUARIO ENCONTRADO EXITOSAMENTE: " + user?.nombre + user?.email)
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "USUARIO NO ENCONTRADO.", e)
