@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toFile
 import androidx.fragment.app.activityViewModels
 import com.tp3.tp3_thebookbox.databinding.FragmentAddBookBinding
 import com.tp3.tp3_thebookbox.entities.Book
@@ -78,7 +79,7 @@ class AddBookFragment : Fragment() {
             resultData?.data?.also { uri ->
                 // Perform operations on the document using its URI.
                 binding.portada.setImageURI(uri)
-                viewModel.uploadPhoto(uri.toString())
+                viewModel.uploadPhoto(uri)
                 Log.d("el uri","Aca tenes la URI: $uri")
                 // D/el uri: Aca tenes la URI: content://com.android.providers.media.documents/document/image%3A32
             }
