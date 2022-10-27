@@ -2,6 +2,8 @@
 
 import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.tp3.tp3_thebookbox.adapters.FavsAdapter
 import com.tp3.tp3_thebookbox.databinding.FragmentFavouriteBooksBinding
 import com.tp3.tp3_thebookbox.databinding.FragmentMyBooksBinding
@@ -15,11 +17,12 @@ import java.sql.Date
     class FavouriteBooksViewModel : ViewModel() {
     lateinit var adapter : FavsAdapter
     var bookList : MutableList<Book> = mutableListOf()
+
     /*
     init {
         adapter = MyBooksAdapter(bookList)
     }
-    */
+     */
 
     // creo mi usuario
     val user = User("Martin Blasson", "martin.blasson@gmail.com", "evergreen742", "https://i.pinimg.com/736x/b9/fd/20/b9fd20744ad6f008787ffed46a0b7149--s-cartoons-bart-simpson.jpg", Date(27/12/2001), "1166310708")

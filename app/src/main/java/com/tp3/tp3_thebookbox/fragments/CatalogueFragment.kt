@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.firestore.ktx.toObject
 import com.tp3.tp3_thebookbox.adapters.CatalogueAdapter
 import com.tp3.tp3_thebookbox.databinding.FragmentCatalogueBinding
+import com.tp3.tp3_thebookbox.entities.Book
 import com.tp3.tp3_thebookbox.viewModels.CatalogueViewModel
 
 class CatalogueFragment : Fragment() {
@@ -28,15 +30,17 @@ class CatalogueFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        viewModel.getAllBooks()
+        viewModel.getAllBooks(binding)
 
         binding.recyclerCatalogo.setHasFixedSize(true)
         binding.recyclerCatalogo.layoutManager = LinearLayoutManager(requireContext())
 
+        /*
         viewModel.adapter = CatalogueAdapter(
             viewModel.bookList,
             { book -> viewModel.onItemSelected(book, binding) })
         binding.recyclerCatalogo.adapter = viewModel.adapter
+        */
 
         //metodo para agregar un nuevo libro al catalogo : subir una publicacion nueva
         binding.addBookButton.setOnClickListener {
