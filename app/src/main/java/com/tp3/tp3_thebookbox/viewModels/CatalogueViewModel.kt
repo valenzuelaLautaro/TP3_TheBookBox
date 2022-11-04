@@ -22,6 +22,7 @@ import com.tp3.tp3_thebookbox.entities.User
 import com.tp3.tp3_thebookbox.fragments.CatalogueFragmentDirections
 import java.io.File
 import java.sql.Date
+import kotlin.collections.contains as contains1
 
 class CatalogueViewModel : ViewModel() {
 
@@ -126,9 +127,17 @@ class CatalogueViewModel : ViewModel() {
         db.collection("books")
             .get()
             .addOnSuccessListener { resultado ->
+                bookList.clear()
                 for(document in resultado) {
-                    bookList.add(document.toObject<Book>())
+                    // agregar un metodo for para recorrer la actual lista 
+                    // y no agregar libros duplicados
+                    var unLibro = document.toObject<Book>()
+                    //if ( !bookList.contains(unLibro) ){
+                        bookList.add(unLibro)
+                    //}
+
                 }
+                Log.d("test",bookList.toString())
                 adapter = CatalogueAdapter(
                     bookList,
                     { book -> onItemSelected(book, binding) })
