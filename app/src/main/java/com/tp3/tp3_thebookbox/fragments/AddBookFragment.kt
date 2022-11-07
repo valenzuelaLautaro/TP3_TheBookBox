@@ -21,8 +21,8 @@ class AddBookFragment : Fragment() {
     private val viewModel: CatalogueViewModel by activityViewModels()
     private var idBook: Int = 5
     private val user = User("lautaro", "lautarovalenzuela94@gmail.com", "callefalsa123", "www.nada.png", Date(12/10/2002), "1166517457")
-    // Request code for selecting a PDF document.
-    private val PICK_IMG_FILE = 1
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +37,7 @@ class AddBookFragment : Fragment() {
         super.onStart()
 
         binding.inputUrlImage.setOnClickListener {
-            openFile()
+            var photoPath = openFile()
         }
 
         binding.publishBookButton.setOnClickListener {
@@ -59,9 +59,14 @@ class AddBookFragment : Fragment() {
             idBook++
         }
     }
-    private fun openFile() {
+    private fun openFile() : String? {
+        var path : String? = null
         TedImagePicker.with(requireContext())
-            .start { uri -> Log.d("uri de la foto",uri.toString()) }
+            .start { uri ->
+                Log.d("uri de la foto",uri.toString())
+                path = uri.toString()
+            }
+        return path
     }
 
 
