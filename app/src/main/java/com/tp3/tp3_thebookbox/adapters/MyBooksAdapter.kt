@@ -17,10 +17,11 @@ class MyBooksAdapter (var bookList: MutableList<Book>, var onClickListener: (Boo
         init {
             view = v
         }
-        fun setBook(name: String){
+        fun setBook(name: String, author:String){
             var bookName : TextView = view.findViewById(R.id.bookName)
+            var bookAuthor : TextView = view.findViewById(R.id.bookAuthor)
             bookName.text = name
-
+            bookAuthor.text = author
         }
         fun setFrontPage(image: String){
             var bookImage : ImageView = view.findViewById(R.id.bookImage)
@@ -35,7 +36,7 @@ class MyBooksAdapter (var bookList: MutableList<Book>, var onClickListener: (Boo
     }
 
     override fun onBindViewHolder(holder: MyBooksHolder, position: Int) {
-        holder.setBook(bookList[position].nombre)
+        holder.setBook(bookList[position].nombre,bookList[position].autor)
         holder.setFrontPage(bookList[position].urlImage)
         // este es el click listener que voy a recibir por parametro para la navegacion
         holder.itemView.setOnClickListener{

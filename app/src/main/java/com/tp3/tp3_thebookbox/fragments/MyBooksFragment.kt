@@ -30,14 +30,10 @@ class MyBooksFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        // agrego manualmente los libros
-        viewModel.addBooks()
-
+        viewModel.getMyBooks(binding)
 
         binding.recyclerMyBooks.setHasFixedSize(true)
         binding.recyclerMyBooks.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel.adapter = MyBooksAdapter(viewModel.bookList) { book -> viewModel.onItemSelected(book,binding) }
-        binding.recyclerMyBooks.adapter = viewModel.adapter
     }
 }

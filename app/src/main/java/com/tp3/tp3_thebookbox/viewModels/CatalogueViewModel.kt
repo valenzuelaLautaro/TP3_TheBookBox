@@ -20,6 +20,8 @@ import com.tp3.tp3_thebookbox.databinding.FragmentCatalogueBinding
 import com.tp3.tp3_thebookbox.entities.Book
 import com.tp3.tp3_thebookbox.entities.User
 import com.tp3.tp3_thebookbox.fragments.CatalogueFragmentDirections
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.tasks.await
 import java.io.File
 import java.sql.Date
 import kotlin.collections.contains as contains1
@@ -34,18 +36,6 @@ class CatalogueViewModel : ViewModel() {
 
     val user = User("Lautaro Valenzuela", "lautarovalenzuela94@gmail.com", "callefalsa123", "https://i.pinimg.com/736x/b9/fd/20/b9fd20744ad6f008787ffed46a0b7149--s-cartoons-bart-simpson.jpg", Date(27/12/2001), "1166517457")
 
-    /*
-    var book1 = Book(0,"La iliada", "Homero", Date(27/12/2001), "Guerra", "Ninguna", "https://global-uploads.webflow.com/6034d7d1f3e0f52c50b2adee/62542902e650b33bf6b7a912_60e710db1c3ed16b7bfff0df_9788418008962_Cub.jpeg", user.email)
-    var book2 = Book(1,"La vuelta al mundo", "Julio Verne", Date(18/12/2000), "Aventura", "Viajeros", "https://www.tematika.com/media/catalog/Ilhsa/Imagenes/673611.jpg", user.email)
-    var book3 = Book(2,"Martin Fierro", "Jose Hernandez", Date(19/6/2003), "Aventura", "Gauchos Anonimos", "https://imgserver1.fierro.com.ar/get/thumb/188/272/HERCI-QUE9879246276=9789879246276.jpg?randomize=1", user.email)
-
-    fun addBooks(){
-        bookList.add(book1)
-        bookList.add(book2)
-        bookList.add(book3)
-    }
-
-     */
 
     fun onItemSelected(book: Book, binding: FragmentCatalogueBinding){
         val action = CatalogueFragmentDirections.actionCatalogueFragmentToBookDetailFragment(book)
@@ -75,14 +65,9 @@ class CatalogueViewModel : ViewModel() {
                 inputGenero.error = "Campo requerido."
             }
             //editorial
-            if(inputEditorial.text.toString().isEmpty()){
+            if(inputEditorial.text.toString().isEmpty()) {
                 isValid = false
                 inputEditorial.error = "Campo requerido."
-            }
-            //urlImage
-            if(inputUrlImage.text.toString().isEmpty()){
-                isValid = false
-                inputUrlImage.error = "Campo requerido."
             }
 
         }
@@ -99,12 +84,13 @@ class CatalogueViewModel : ViewModel() {
     fun uploadBook(){
 
     }
-    fun uploadPhoto(path:Uri){
-        val portadaRef = storageRef.child("images/${path.lastPathSegment}")
-        val uploadTask = portadaRef.putFile(path)
-        var downloadUri: String
+    suspend fun uploadPhoto(path:Uri) : String {
+        var downloadUri : String = ""
 
-        val urlTask = uploadTask.continueWithTask { task ->
+        val portadaRef = storageRef.child("portadas/${path.lastPathSegment}")
+        val uploadTask = portadaRef.putFile(path)
+
+        uploadTask.continueWithTask { task ->
             if (!task.isSuccessful) {
                 task.exception?.let {
                     throw it
@@ -114,13 +100,16 @@ class CatalogueViewModel : ViewModel() {
         }.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 downloadUri = task.result.toString()
-                Log.d("URI FIREBASE","LA URI ES: $downloadUri")
+                Log.d("URI FIREBASE", "LA URI ES: $downloadUri")
             } else {
                 // Handle failures
                 // ...
-                Log.d("error","Error al enviar foto a Firebase")
+                Log.d("error", "Error al enviar foto a Firebase")
             }
-        }
+        }.await()
+        
+        Log.d("resultado", downloadUri)
+        return downloadUri
     }
 
     fun getAllBooks(binding: FragmentCatalogueBinding){
@@ -129,13 +118,7 @@ class CatalogueViewModel : ViewModel() {
             .addOnSuccessListener { resultado ->
                 bookList.clear()
                 for(document in resultado) {
-                    // agregar un metodo for para recorrer la actual lista 
-                    // y no agregar libros duplicados
-                    var unLibro = document.toObject<Book>()
-                    //if ( !bookList.contains(unLibro) ){
-                        bookList.add(unLibro)
-                    //}
-
+                    bookList.add(document.toObject<Book>())
                 }
                 Log.d("test",bookList.toString())
                 adapter = CatalogueAdapter(
