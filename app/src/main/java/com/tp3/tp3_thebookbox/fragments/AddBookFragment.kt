@@ -62,7 +62,7 @@ class AddBookFragment : Fragment() {
                 Date(binding.inputEdicion.text.toString().toInt().toLong()),
                 binding.inputGenero.text.toString(),
                 binding.inputEditorial.text.toString(),
-                downloadURL.toString() ,
+                testURL ,
                 user.email)
 
             if(viewModel.validateForm(binding)){
