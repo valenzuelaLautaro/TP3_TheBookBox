@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "732543322376",
-    "project_id": "thebookbox-6a004",
-    "storage_bucket": "thebookbox-6a004.appspot.com"
+    "project_number": "333958989928",
+    "project_id": "the-book-box",
+    "storage_bucket": "the-book-box.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:732543322376:android:d45199623ee7db237c84bd",
+        "mobilesdk_app_id": "1:333958989928:android:e0d452703ae9177def53dd",
         "android_client_info": {
           "package_name": "com.tp3.tp3_thebookbox"
         }
       },
       "oauth_client": [
         {
-          "client_id": "732543322376-4aemhmvpvjg1pin14cug4cu07lcrktkd.apps.googleusercontent.com",
+          "client_id": "333958989928-seoq0rvq0755mf4ng70fuanagtntblv4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDQEmic3Kcm66GqDMqYalrzl0XYMhkbvRE"
+          "current_key": "AIzaSyBWmRc8UqMb9W_jwA6mS_anPKTlsmkrwQg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "732543322376-4aemhmvpvjg1pin14cug4cu07lcrktkd.apps.googleusercontent.com",
+              "client_id": "333958989928-seoq0rvq0755mf4ng70fuanagtntblv4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
