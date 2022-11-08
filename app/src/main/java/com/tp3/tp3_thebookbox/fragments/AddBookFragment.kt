@@ -24,7 +24,8 @@ class AddBookFragment : Fragment() {
     private val viewModel: CatalogueViewModel by activityViewModels()
     private var idBook: Int = 5
     lateinit var path : Uri
-    lateinit var downloadURL :String
+    lateinit var downloadURL : Deferred<String>
+    var testURL : String = "https://firebasestorage.googleapis.com/v0/b/bookbox-27261.appspot.com/o/portadas%2F34?alt=media&token=046713f2-df95-43b9-a9e0-828355a4268f"
 
     // usuario Hardcodeado para crear un libro nuevo
     private val user = User("lautaro", "lautarovalenzuela94@gmail.com", "callefalsa123", "www.nada.png", Date(12/10/2002), "1166517457")
@@ -49,12 +50,10 @@ class AddBookFragment : Fragment() {
             // corutinas
             scope.launch {
                 openFile()
-                downloadURL = viewModel.uploadPhoto(path)
-                cargarImagen(downloadURL)
+                downloadURL = async{ viewModel.uploadPhoto(path) }
+                cargarImagen(downloadURL.await())
             }
         }
-
-
 
         binding.publishBookButton.setOnClickListener {
 
@@ -63,7 +62,7 @@ class AddBookFragment : Fragment() {
                 Date(binding.inputEdicion.text.toString().toInt().toLong()),
                 binding.inputGenero.text.toString(),
                 binding.inputEditorial.text.toString(),
-                downloadURL ,
+                downloadURL.toString() ,
                 user.email)
 
             if(viewModel.validateForm(binding)){
@@ -81,12 +80,10 @@ class AddBookFragment : Fragment() {
                 Log.d("uri de la foto",uri.toString())
                 path = uri
             }
-        delay(20000)
+        delay(10000)
     }
 
-    private suspend fun cargarImagen(downloadPath:String){
+    private fun cargarImagen(downloadPath:String){
             Glide.with(binding.root).load(downloadPath).centerCrop().into(binding.portada)
     }
-
-
 }

@@ -1,10 +1,16 @@
     package com.tp3.tp3_thebookbox.viewModels
 
+import android.content.ContentValues
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.tp3.tp3_thebookbox.adapters.CatalogueAdapter
 import com.tp3.tp3_thebookbox.adapters.FavsAdapter
+import com.tp3.tp3_thebookbox.databinding.FragmentCatalogueBinding
 import com.tp3.tp3_thebookbox.databinding.FragmentFavouriteBooksBinding
 import com.tp3.tp3_thebookbox.databinding.FragmentMyBooksBinding
 import com.tp3.tp3_thebookbox.entities.Book
@@ -16,6 +22,7 @@ import java.sql.Date
 
     class FavouriteBooksViewModel : ViewModel() {
     lateinit var adapter : FavsAdapter
+    val db = Firebase.firestore
     var bookList : MutableList<Book> = mutableListOf()
 
     // creo mi usuario
@@ -32,9 +39,38 @@ import java.sql.Date
         bookList.add(book3)
     }
 
+    fun addFavorites( book: Book){
+
+        // android no soporta enlistar subcolecciones
+
+
+    }
+
+    fun getFavBooks(binding: FragmentFavouriteBooksBinding){
+        db.collection("books")
+            .whereEqualTo("idUser", user.email)
+            .get()
+            .addOnSuccessListener { resultado ->
+                bookList.clear()
+                for(document in resultado) {
+
+                    bookList.add(document.toObject<Book>())
+                }
+                Log.d("test",bookList.toString())
+                adapter = FavsAdapter(
+                    bookList,
+                    { book -> onItemSelected(book, binding) })
+                binding.recyclerCatalogo.adapter = adapter
+            }
+            .addOnFailureListener { e -> Log.d(ContentValues.TAG, "Error getting documents: ", e) }
+        println("LISTA DE LIBROS: " + bookList)
+    }
+
     fun onItemSelected(book: Book, binding: FragmentFavouriteBooksBinding){
         var action = FavouriteBooksFragmentDirections.actionFavouriteBooksFragmentToBookDetailFragment(book)
         binding.root.findNavController().navigate(action)
     }
 
 }
+
+

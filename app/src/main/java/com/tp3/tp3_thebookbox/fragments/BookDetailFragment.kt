@@ -33,5 +33,8 @@ class BookDetailFragment : Fragment() {
         binding.deleteButton.setOnClickListener {
             viewModel.deleteBook(BookDetailFragmentArgs.fromBundle(requireArguments()).bookSelected)
         }
+        binding.addFavorites.setOnClickListener {
+            viewModel.addFavorites(BookDetailFragmentArgs.fromBundle(requireArguments()).bookSelected)
+        }
     }
 }

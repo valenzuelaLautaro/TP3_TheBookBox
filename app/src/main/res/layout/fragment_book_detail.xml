@@ -98,11 +98,11 @@
         app:layout_constraintTop_toBottomOf="@+id/bookDetailEditorial" />
 
     <Button
-        android:id="@+id/bookDownloadButton"
+        android:id="@+id/addFavorites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Descargar"
+        android:text="Agregar a Favoritos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,7 +126,7 @@
         android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookDownloadButton" />
+        app:layout_constraintTop_toBottomOf="@+id/addFavorites" />
 
     <Button
         android:id="@+id/bookSendComent"

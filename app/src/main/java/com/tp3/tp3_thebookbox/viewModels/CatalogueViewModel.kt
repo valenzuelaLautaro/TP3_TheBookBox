@@ -89,15 +89,19 @@ class CatalogueViewModel : ViewModel() {
 
         val portadaRef = storageRef.child("portadas/${path.lastPathSegment}")
         val uploadTask = portadaRef.putFile(path)
-
+        Log.d("llego hasta aca", "1")
         uploadTask.continueWithTask { task ->
             if (!task.isSuccessful) {
                 task.exception?.let {
+                    Log.d("llego hasta aca", "error")
                     throw it
+
                 }
             }
+            Log.d("llego hasta aca", "2")
             portadaRef.downloadUrl
         }.addOnCompleteListener { task ->
+            Log.d("llego hasta aca", "3")
             if (task.isSuccessful) {
                 downloadUri = task.result.toString()
                 Log.d("URI FIREBASE", "LA URI ES: $downloadUri")
