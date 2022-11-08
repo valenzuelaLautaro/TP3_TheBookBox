@@ -31,15 +31,10 @@ class FavouriteBooksFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        viewModel.addBooks()
-
+        //viewModel.addBooks()
+        viewModel.getFavBooks(binding)
         binding.recyclerCatalogo.setHasFixedSize(true)
         binding.recyclerCatalogo.layoutManager = LinearLayoutManager(context)
-
-        viewModel.adapter = FavsAdapter(
-            viewModel.bookList,
-            { book -> viewModel.onItemSelected(book, binding) })
-        binding.recyclerCatalogo.adapter = viewModel.adapter
 
     }
 }

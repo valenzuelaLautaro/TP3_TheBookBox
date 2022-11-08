@@ -48,7 +48,7 @@ import java.sql.Date
 
     fun getFavBooks(binding: FragmentFavouriteBooksBinding){
         db.collection("books")
-            .whereEqualTo("idUser", user.email)
+            .whereEqualTo("idUser", user.email) // condicion de busqueda
             .get()
             .addOnSuccessListener { resultado ->
                 bookList.clear()
