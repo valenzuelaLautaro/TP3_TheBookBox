@@ -18,7 +18,7 @@ class BookDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentBookDetailBinding
     private val viewModel: BookDetailViewModel by viewModels()
-    private val viewModel2: FavouriteBooksViewModel by viewModels()
+    val email: String = "martin.blasson@gmail.com"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,12 +31,20 @@ class BookDetailFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.setBookDetail(BookDetailFragmentArgs.fromBundle(requireArguments()).bookSelected, binding)
+
+        val book = BookDetailFragmentArgs.fromBundle(requireArguments()).bookSelected
+
+        viewModel.setBookDetail(book, binding)
+
+        binding.addFavorites.setOnClickListener {
+            viewModel.addFavouriteBook(book, email)
+        }
+
         binding.deleteButton.setOnClickListener {
             viewModel.deleteBook(BookDetailFragmentArgs.fromBundle(requireArguments()).bookSelected)
         }
         binding.addFavorites.setOnClickListener {
-            viewModel2.addFavorites(BookDetailFragmentArgs.fromBundle(requireArguments()).bookSelected)
+            viewModel.addFavouriteBook(BookDetailFragmentArgs.fromBundle(requireArguments()).bookSelected, email)
         }
     }
 }

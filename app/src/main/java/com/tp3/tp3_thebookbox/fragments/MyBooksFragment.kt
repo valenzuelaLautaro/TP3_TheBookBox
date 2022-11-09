@@ -34,6 +34,5 @@ class MyBooksFragment : Fragment() {
 
         binding.recyclerMyBooks.setHasFixedSize(true)
         binding.recyclerMyBooks.layoutManager = LinearLayoutManager(requireContext())
-
     }
 }

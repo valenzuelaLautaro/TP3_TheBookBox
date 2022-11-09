@@ -18,6 +18,7 @@ class FavouriteBooksFragment : Fragment() {
 
     private lateinit var binding: FragmentFavouriteBooksBinding
     private val viewModel: FavouriteBooksViewModel by viewModels()
+    private val email : String = "lautarovalenzuela94@gmail.com"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,8 +32,11 @@ class FavouriteBooksFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        binding.inputBook2.setOnClickListener{
+            viewModel.filterByName(binding.inputBook2.text.toString())
+        }
         //viewModel.addBooks()
-        viewModel.getFavBooks(binding)
+        viewModel.getFavBooks(email, binding)
         binding.recyclerCatalogo.setHasFixedSize(true)
         binding.recyclerCatalogo.layoutManager = LinearLayoutManager(context)
 

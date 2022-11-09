@@ -22,7 +22,7 @@ class AddBookFragment : Fragment() {
 
     private lateinit var binding: FragmentAddBookBinding
     private val viewModel: CatalogueViewModel by activityViewModels()
-    private var idBook: Int = 5
+    private var idBook: String = "asdsad"
     lateinit var path : Uri
     lateinit var downloadURL : Deferred<String>
     var testURL : String = "https://firebasestorage.googleapis.com/v0/b/bookbox-27261.appspot.com/o/portadas%2F34?alt=media&token=046713f2-df95-43b9-a9e0-828355a4268f"
@@ -57,7 +57,8 @@ class AddBookFragment : Fragment() {
 
         binding.publishBookButton.setOnClickListener {
 
-            val book = Book(idBook, binding.inputTitle.text.toString(),
+            val book = Book(idBook,
+                binding.inputTitle.text.toString(),
                 binding.inputAutor.text.toString(),
                 Date(binding.inputEdicion.text.toString().toInt().toLong()),
                 binding.inputGenero.text.toString(),
@@ -71,7 +72,6 @@ class AddBookFragment : Fragment() {
                 //viewModel.uploadPhoto()
                 println("TODO OK")
             }
-            idBook++
         }
     }
     private suspend fun openFile(){
