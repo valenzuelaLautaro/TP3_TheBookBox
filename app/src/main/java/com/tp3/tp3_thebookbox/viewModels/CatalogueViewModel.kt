@@ -33,9 +33,7 @@ class CatalogueViewModel : ViewModel() {
     val storage = Firebase.storage
     val storageRef = storage.reference
     var bookList : MutableList<Book> = mutableListOf()
-
-    val user = User("Lautaro Valenzuela", "lautarovalenzuela94@gmail.com", "callefalsa123", "https://i.pinimg.com/736x/b9/fd/20/b9fd20744ad6f008787ffed46a0b7149--s-cartoons-bart-simpson.jpg", Date(27/12/2001), "1166517457")
-
+    var id : Int = 0
 
     fun onItemSelected(book: Book, binding: FragmentCatalogueBinding){
         val action = CatalogueFragmentDirections.actionCatalogueFragmentToBookDetailFragment(book)
@@ -75,7 +73,8 @@ class CatalogueViewModel : ViewModel() {
         return isValid
     }
     fun publishBook(book: Book){
-        db.collection("books").document()
+        db.collection("books")
+            .document(book.id)
             .set(book)
             .addOnSuccessListener { Log.d(TAG, "DOCUMENTO AGREGADO CORRECTAMENTE") }
             .addOnFailureListener { e -> Log.w(TAG, "ERROR AL CARGAR EL DOCUMENTO", e) }
@@ -132,5 +131,15 @@ class CatalogueViewModel : ViewModel() {
             }
             .addOnFailureListener { e -> Log.d(TAG, "Error getting documents: ", e) }
         println("LISTA DE LIBROS: " + bookList)
+    }
+    fun getLastId(){
+        db.collection("books")
+            .get()
+            .addOnSuccessListener {
+                id = it.documents.size
+                println("LAST ID " + it.documents.size)
+                Log.d(TAG, "LIBROS ENCONTRADOS: " + it.documents.toString())
+            }
+            .addOnFailureListener { e -> Log.w(TAG, "ERROR AL BUSCAR LOS LIBROS", e) }
     }
 }

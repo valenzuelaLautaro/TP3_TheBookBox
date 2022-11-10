@@ -32,6 +32,8 @@ class CatalogueFragment : Fragment() {
 
         viewModel.getAllBooks(binding)
 
+        viewModel.getLastId()
+
         binding.recyclerCatalogo.setHasFixedSize(true)
         binding.recyclerCatalogo.layoutManager = LinearLayoutManager(requireContext())
 
@@ -41,5 +43,4 @@ class CatalogueFragment : Fragment() {
             viewModel.addBook(binding)
         }
     }
-
 }
