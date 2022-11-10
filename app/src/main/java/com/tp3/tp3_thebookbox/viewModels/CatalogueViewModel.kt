@@ -30,8 +30,7 @@ class CatalogueViewModel : ViewModel() {
 
     lateinit var adapter : CatalogueAdapter
     val db = Firebase.firestore
-    val storage = Firebase.storage
-    val storageRef = storage.reference
+
     var bookList : MutableList<Book> = mutableListOf()
     var id : Int = 0
 
@@ -69,7 +68,6 @@ class CatalogueViewModel : ViewModel() {
             }
 
         }
-
         return isValid
     }
     fun publishBook(book: Book){
@@ -80,40 +78,6 @@ class CatalogueViewModel : ViewModel() {
             .addOnFailureListener { e -> Log.w(TAG, "ERROR AL CARGAR EL DOCUMENTO", e) }
     }
 
-    fun uploadBook(){
-
-    }
-    suspend fun uploadPhoto(path:Uri) : String {
-        var downloadUri : String = ""
-
-        val portadaRef = storageRef.child("portadas/${path.lastPathSegment}")
-        val uploadTask = portadaRef.putFile(path)
-        Log.d("llego hasta aca", "1")
-        uploadTask.continueWithTask { task ->
-            if (!task.isSuccessful) {
-                task.exception?.let {
-                    Log.d("llego hasta aca", "error")
-                    throw it
-
-                }
-            }
-            Log.d("llego hasta aca", "2")
-            portadaRef.downloadUrl
-        }.addOnCompleteListener { task ->
-            Log.d("llego hasta aca", "3")
-            if (task.isSuccessful) {
-                downloadUri = task.result.toString()
-                Log.d("URI FIREBASE", "LA URI ES: $downloadUri")
-            } else {
-                // Handle failures
-                // ...
-                Log.d("error", "Error al enviar foto a Firebase")
-            }
-        }.await()
-        
-        Log.d("resultado", downloadUri)
-        return downloadUri
-    }
 
     fun getAllBooks(binding: FragmentCatalogueBinding){
         db.collection("books")

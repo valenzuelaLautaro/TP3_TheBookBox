@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.tp3.tp3_thebookbox.databinding.FragmentAddBookBinding
 import com.tp3.tp3_thebookbox.entities.Book
 import com.tp3.tp3_thebookbox.entities.User
@@ -22,9 +24,9 @@ class AddBookFragment : Fragment() {
 
     private lateinit var binding: FragmentAddBookBinding
     private val viewModel: CatalogueViewModel by activityViewModels()
-    lateinit var path : Uri
-    lateinit var downloadURL : Deferred<String>
-    var testURL : String = "https://firebasestorage.googleapis.com/v0/b/bookbox-27261.appspot.com/o/portadas%2F34?alt=media&token=046713f2-df95-43b9-a9e0-828355a4268f"
+    val storage = Firebase.storage
+    val storageRef = storage.reference
+    lateinit var downloadUri : String
 
     // usuario Hardcodeado para crear un libro nuevo
     private val user = User("lautaro", "lautarovalenzuela94@gmail.com", "callefalsa123", "www.nada.png", Date(12/10/2002), "1166517457")
@@ -41,17 +43,38 @@ class AddBookFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        val parentJob = Job()
-        val scope = CoroutineScope(Dispatchers.Default + parentJob)
-
 
         binding.inputUrlImage.setOnClickListener {
-            // corutinas
-            scope.launch {
-                openFile()
-                downloadURL = async{ viewModel.uploadPhoto(path) }
-                cargarImagen(downloadURL.await())
-            }
+            TedImagePicker.with(requireContext())
+                .start { uri ->
+                    Log.d("uri de la foto",uri.toString())
+
+                    val portadaRef = storageRef.child("portadas/${uri.lastPathSegment}")
+                    val uploadTask = portadaRef.putFile(uri)
+                    Log.d("llego hasta aca", "1")
+                    uploadTask.continueWithTask { task ->
+                        if (!task.isSuccessful) {
+                            task.exception?.let {
+                                Log.d("llego hasta aca", "error")
+                                throw it
+
+                            }
+                        }
+                        Log.d("llego hasta aca", "2")
+                        portadaRef.downloadUrl
+                    }.addOnCompleteListener { task ->
+                        Log.d("llego hasta aca", "3")
+                        if (task.isSuccessful) {
+                            downloadUri = task.result.toString()
+                            Log.d("URI FIREBASE", "LA URI ES: $downloadUri")
+                            Glide.with(binding.root).load(downloadUri).centerCrop().into(binding.portada)
+                        } else {
+                            // Handle failures
+                            // ...
+                            Log.d("error", "Error al enviar foto a Firebase")
+                        }
+                    }
+                }
         }
 
         binding.publishBookButton.setOnClickListener {
@@ -61,27 +84,14 @@ class AddBookFragment : Fragment() {
                 Date(binding.inputEdicion.text.toString().toInt().toLong()),
                 binding.inputGenero.text.toString(),
                 binding.inputEditorial.text.toString(),
-                testURL,
+                downloadUri,
                 user.email)
 
             if(viewModel.validateForm(binding)){
                 viewModel.publishBook(book)
-                //viewModel.uploadBook()
-                //viewModel.uploadPhoto()
                 println("TODO OK")
             }
         }
     }
-    private suspend fun openFile(){
-        TedImagePicker.with(requireContext())
-            .start { uri ->
-                Log.d("uri de la foto",uri.toString())
-                path = uri
-            }
-        delay(10000)
-    }
 
-    private fun cargarImagen(downloadPath:String){
-            Glide.with(binding.root).load(downloadPath).centerCrop().into(binding.portada)
-    }
 }
