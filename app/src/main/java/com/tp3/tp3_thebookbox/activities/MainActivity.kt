@@ -8,6 +8,7 @@ import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.tp3.tp3_thebookbox.R
 import com.tp3.tp3_thebookbox.databinding.ActivityMainBinding
+import com.tp3.tp3_thebookbox.fragments.BookDetailFragmentArgs
 
 class MainActivity : AppCompatActivity() {
     lateinit var navHostFragment: NavHostFragment
@@ -17,9 +18,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // este setting es de la bottom bar
         bottomNavigationView = findViewById(R.id.bottom_navBar)
         navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
-
         NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.navController)
     }
+
+
 }

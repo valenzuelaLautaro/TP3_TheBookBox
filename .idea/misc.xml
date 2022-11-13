@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Documentos/FACULTAD/Cuatrimestre 4/Taller de Programacion 3/AndroidStudioProjects/TP3_TheBookBox/app/src/main/res/layout/activity_login.xml" value="0.134375" />
         <entry key="..\:/Documentos/FACULTAD/Cuatrimestre 4/Taller de Programacion 3/AndroidStudioProjects/TP3_TheBookBox/app/src/main/res/layout/book_item.xml" value="0.33" />
         <entry key="..\:/Documentos/FACULTAD/Cuatrimestre 4/Taller de Programacion 3/AndroidStudioProjects/TP3_TheBookBox/app/src/main/res/layout/fragment_add_book.xml" value="0.25" />
         <entry key="..\:/Documentos/FACULTAD/Cuatrimestre 4/Taller de Programacion 3/AndroidStudioProjects/TP3_TheBookBox/app/src/main/res/layout/fragment_book_detail.xml" value="0.2" />
         <entry key="..\:/Documentos/FACULTAD/Cuatrimestre 4/Taller de Programacion 3/AndroidStudioProjects/TP3_TheBookBox/app/src/main/res/layout/fragment_favourite_books.xml" value="0.2" />
+        <entry key="..\:/Documentos/FACULTAD/Cuatrimestre 4/Taller de Programacion 3/AndroidStudioProjects/TP3_TheBookBox/app/src/main/res/layout/fragment_google_login.xml" value="0.134375" />
+        <entry key="..\:/Documentos/FACULTAD/Cuatrimestre 4/Taller de Programacion 3/AndroidStudioProjects/TP3_TheBookBox/app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/Documentos/FACULTAD/Cuatrimestre 4/Taller de Programacion 3/AndroidStudioProjects/TP3_TheBookBox/app/src/main/res/layout/fragment_log_in.xml" value="0.134375" />
         <entry key="..\:/Documentos/FACULTAD/Cuatrimestre 4/Taller de Programacion 3/AndroidStudioProjects/TP3_TheBookBox/app/src/main/res/layout/fragment_my_book_information.xml" value="0.2" />
         <entry key="..\:/Documentos/FACULTAD/Cuatrimestre 4/Taller de Programacion 3/AndroidStudioProjects/TP3_TheBookBox/app/src/main/res/layout/fragment_my_books.xml" value="0.25" />
         <entry key="..\:/Documentos/FACULTAD/Cuatrimestre 4/Taller de Programacion 3/AndroidStudioProjects/TheBookBox_Proyecto/app/src/main/res/layout/activity_main.xml" value="0.2" />

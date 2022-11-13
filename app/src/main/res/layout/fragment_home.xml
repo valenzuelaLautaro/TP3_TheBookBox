@@ -20,10 +20,11 @@
         android:id="@+id/homeDescription"
         android:layout_width="333dp"
         android:layout_height="139dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="76dp"
         android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown "
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.205"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/homeImage" />
 </androidx.constraintlayout.widget.ConstraintLayout>
