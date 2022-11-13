@@ -30,7 +30,7 @@ class GoogleLoginFragment : Fragment() {
 
     private lateinit var oneTapClient: SignInClient
     private lateinit var signInRequest: BeginSignInRequest
-    private val clientID = "333958989928-seoq0rvq0755mf4ng70fuanagtntblv4.apps.googleusercontent.com"
+    private val clientID = ""
     private lateinit var auth: FirebaseAuth
     private val REQ_ONE_TAP = 2  // Can be any integer unique to the Activity
     private var showOneTapUI = true
