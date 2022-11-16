@@ -4,9 +4,10 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class Comment (var texto: String,
-               var cantEstrellas: Int,
-               var idUsuario: String,
-               var idLibro: Int) : Parcelable {
+class Comment (var idComment: String = "",
+               var text: String = "",
+               var stars: Int = 0,
+               var idUser: String = "",
+               var idBook: String = "") : Parcelable {
 
 }

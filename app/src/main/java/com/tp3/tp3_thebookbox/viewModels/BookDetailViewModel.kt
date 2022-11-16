@@ -3,6 +3,7 @@ package com.tp3.tp3_thebookbox.viewModels
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.ktx.firestore
@@ -10,6 +11,8 @@ import com.google.firebase.ktx.Firebase
 import com.tp3.tp3_thebookbox.databinding.FragmentAddBookBinding
 import com.tp3.tp3_thebookbox.databinding.FragmentBookDetailBinding
 import com.tp3.tp3_thebookbox.entities.Book
+import com.tp3.tp3_thebookbox.fragments.BookDetailFragmentDirections
+import com.tp3.tp3_thebookbox.fragments.MyAccountFragmentDirections
 
 class BookDetailViewModel : ViewModel() {
 
@@ -36,5 +39,10 @@ class BookDetailViewModel : ViewModel() {
             .delete()
             .addOnSuccessListener { Log.d(TAG, "El libro " + book.nombre + " fue borrado exitosamente.") }
             .addOnFailureListener { e -> Log.w(TAG, "Ha ocurrido un error al borrar el libro.", e) }
+    }
+
+    fun navigateToComments(book: Book, binding: FragmentBookDetailBinding) {
+        var action = BookDetailFragmentDirections.actionBookDetailFragmentToCommentFragment(book)
+        binding.root.findNavController().navigate(action)
     }
 }

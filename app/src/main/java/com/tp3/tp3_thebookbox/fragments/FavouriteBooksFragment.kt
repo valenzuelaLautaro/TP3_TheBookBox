@@ -18,7 +18,7 @@ class FavouriteBooksFragment : Fragment() {
 
     private lateinit var binding: FragmentFavouriteBooksBinding
     private val viewModel: FavouriteBooksViewModel by viewModels()
-    private val email : String = "lautarovalenzuela94@gmail.com"
+    private val email : String = "martin.blasson@gmail.com"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

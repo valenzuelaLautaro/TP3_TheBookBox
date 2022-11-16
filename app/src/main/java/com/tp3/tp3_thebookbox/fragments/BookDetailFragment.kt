@@ -36,6 +36,10 @@ class BookDetailFragment : Fragment() {
 
         viewModel.setBookDetail(book, binding)
 
+        binding.addComment.setOnClickListener {
+            viewModel.navigateToComments(book, binding)
+        }
+
         binding.addFavorites.setOnClickListener {
             viewModel.addFavouriteBook(book, email)
         }

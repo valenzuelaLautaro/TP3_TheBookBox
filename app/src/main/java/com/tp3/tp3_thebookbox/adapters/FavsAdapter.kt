@@ -18,8 +18,8 @@ class FavsAdapter (var bookList: MutableList<Book>, var onClickListener: (Book) 
             view = v
         }
         fun setBook(name: String, author: String){
-            var bookName : TextView = view.findViewById(R.id.bookName)
-            var bookAuthor : TextView = view.findViewById(R.id.bookAuthor)
+            var bookName : TextView = view.findViewById(R.id.bookComment)
+            var bookAuthor : TextView = view.findViewById(R.id.bookStars)
 
             bookName.text = name
             bookAuthor.text = author

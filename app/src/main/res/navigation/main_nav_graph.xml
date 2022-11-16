@@ -46,6 +46,9 @@
         <argument
             android:name="bookSelected"
             app:argType="com.tp3.tp3_thebookbox.entities.Book" />
+        <action
+            android:id="@+id/action_bookDetailFragment_to_commentFragment"
+            app:destination="@id/commentFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -94,6 +97,15 @@
         tools:layout="@layout/fragment_my_book_information" >
         <argument
             android:name="myBookSelected"
+            app:argType="com.tp3.tp3_thebookbox.entities.Book" />
+    </fragment>
+    <fragment
+        android:id="@+id/commentFragment"
+        android:name="com.tp3.tp3_thebookbox.fragments.CommentFragment"
+        android:label="fragment_comment"
+        tools:layout="@layout/fragment_comment" >
+        <argument
+            android:name="book"
             app:argType="com.tp3.tp3_thebookbox.entities.Book" />
     </fragment>
 </navigation>
