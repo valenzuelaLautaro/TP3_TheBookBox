@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.tp3.tp3_thebookbox.databinding.FragmentAddBookBinding
@@ -26,7 +27,7 @@ class AddBookFragment : Fragment() {
     private val viewModel: CatalogueViewModel by activityViewModels()
     val storage = Firebase.storage
     val storageRef = storage.reference
-    lateinit var downloadUri : String
+    var downloadUri : String? = null
 
     // usuario Hardcodeado para crear un libro nuevo
     private val user = User("lautaro", "lautarovalenzuela94@gmail.com", "callefalsa123", "www.nada.png", Date(12/10/2002), "1166517457")
@@ -78,19 +79,24 @@ class AddBookFragment : Fragment() {
         }
 
         binding.publishBookButton.setOnClickListener {
-            val book = Book(viewModel.id++.toString(),
-                binding.inputTitle.text.toString(),
-                binding.inputAutor.text.toString(),
-                Date(binding.inputEdicion.text.toString().toInt().toLong()),
-                binding.inputGenero.text.toString(),
-                binding.inputEditorial.text.toString(),
-                downloadUri,
-                user.email)
+            if (downloadUri!=null){
+                val book = Book(viewModel.id++.toString(),
+                    binding.inputTitle.text.toString(),
+                    binding.inputAutor.text.toString(),
+                    Date(binding.inputEdicion.text.toString().toInt().toLong()),
+                    binding.inputGenero.text.toString(),
+                    binding.inputEditorial.text.toString(),
+                    downloadUri.toString(),
+                    user.email)
 
-            if(viewModel.validateForm(binding)){
-                viewModel.publishBook(book)
-                println("TODO OK")
+                if(viewModel.validateForm(binding)){
+                    viewModel.publishBook(book)
+                    println("TODO OK")
+                }
+            } else{
+                Snackbar.make(binding.root ,"La imagen aun no fue cargada", Snackbar.LENGTH_SHORT).show()
             }
+
         }
     }
 

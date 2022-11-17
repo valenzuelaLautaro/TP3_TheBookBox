@@ -9,7 +9,7 @@
         android:id="@+id/catalogueFragment"
         android:name="com.tp3.tp3_thebookbox.fragments.CatalogueFragment"
         android:label="fragment_catalogo"
-        tools:layout="@layout/fragment_catalogue" >
+        tools:layout="@layout/fragment_catalogue">
         <action
             android:id="@+id/action_catalogueFragment_to_bookDetailFragment"
             app:destination="@id/bookDetailFragment" />
@@ -21,7 +21,7 @@
         android:id="@+id/myAccountFragment"
         android:name="com.tp3.tp3_thebookbox.fragments.MyAccountFragment"
         android:label="fragment_my_account"
-        tools:layout="@layout/fragment_my_account" >
+        tools:layout="@layout/fragment_my_account">
         <action
             android:id="@+id/action_myAccountFragment_to_myBooksFragment"
             app:destination="@id/myBooksFragment" />
@@ -33,7 +33,7 @@
         android:id="@+id/favouriteBooksFragment"
         android:name="com.tp3.tp3_thebookbox.fragments.FavouriteBooksFragment"
         android:label="fragment_favourites_books"
-        tools:layout="@layout/fragment_favourite_books" >
+        tools:layout="@layout/fragment_favourite_books">
         <action
             android:id="@+id/action_favouriteBooksFragment_to_bookDetailFragment"
             app:destination="@id/bookDetailFragment" />
@@ -42,7 +42,7 @@
         android:id="@+id/bookDetailFragment"
         android:name="com.tp3.tp3_thebookbox.fragments.BookDetailFragment"
         android:label="fragment_book_detail"
-        tools:layout="@layout/fragment_book_detail" >
+        tools:layout="@layout/fragment_book_detail">
         <argument
             android:name="bookSelected"
             app:argType="com.tp3.tp3_thebookbox.entities.Book" />
@@ -59,7 +59,7 @@
         android:id="@+id/myBooksFragment"
         android:name="com.tp3.tp3_thebookbox.fragments.MyBooksFragment"
         android:label="fragment_my_books"
-        tools:layout="@layout/fragment_my_books" >
+        tools:layout="@layout/fragment_my_books">
         <action
             android:id="@+id/action_myBooksFragment_to_myBookInformationFragment"
             app:destination="@id/myBookInformationFragment" />
@@ -68,7 +68,7 @@
         android:id="@+id/createAccountFragment"
         android:name="com.tp3.tp3_thebookbox.fragments.CreateAccountFragment"
         android:label="fragment_create_account"
-        tools:layout="@layout/fragment_create_account" >
+        tools:layout="@layout/fragment_create_account">
         <action
             android:id="@+id/action_createAccountFragment_to_myAccountFragment"
             app:destination="@id/myAccountFragment" />
@@ -77,7 +77,7 @@
         android:id="@+id/logInFragment"
         android:name="com.tp3.tp3_thebookbox.fragments.LogInFragment"
         android:label="fragment_log_in"
-        tools:layout="@layout/fragment_log_in" >
+        tools:layout="@layout/fragment_log_in">
         <action
             android:id="@+id/action_logInFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -89,12 +89,16 @@
         android:id="@+id/addBookFragment"
         android:name="com.tp3.tp3_thebookbox.fragments.AddBookFragment"
         android:label="fragment_add_book"
-        tools:layout="@layout/fragment_add_book" />
+        tools:layout="@layout/fragment_add_book" >
+        <action
+            android:id="@+id/action_addBookFragment_to_catalogueFragment"
+            app:destination="@id/catalogueFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myBookInformationFragment"
         android:name="com.tp3.tp3_thebookbox.fragments.MyBookInformationFragment"
         android:label="fragment_my_book_information"
-        tools:layout="@layout/fragment_my_book_information" >
+        tools:layout="@layout/fragment_my_book_information">
         <argument
             android:name="myBookSelected"
             app:argType="com.tp3.tp3_thebookbox.entities.Book" />

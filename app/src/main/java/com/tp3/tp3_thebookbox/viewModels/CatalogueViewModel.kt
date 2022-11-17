@@ -19,6 +19,7 @@ import com.tp3.tp3_thebookbox.databinding.FragmentAddBookBinding
 import com.tp3.tp3_thebookbox.databinding.FragmentCatalogueBinding
 import com.tp3.tp3_thebookbox.entities.Book
 import com.tp3.tp3_thebookbox.entities.User
+import com.tp3.tp3_thebookbox.fragments.AddBookFragmentDirections
 import com.tp3.tp3_thebookbox.fragments.CatalogueFragmentDirections
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.tasks.await
@@ -70,11 +71,15 @@ class CatalogueViewModel : ViewModel() {
         }
         return isValid
     }
-    fun publishBook(book: Book){
+    fun publishBook(book: Book, binding: FragmentAddBookBinding){
         db.collection("books")
             .document(book.id)
             .set(book)
-            .addOnSuccessListener { Log.d(TAG, "DOCUMENTO AGREGADO CORRECTAMENTE") }
+            .addOnSuccessListener {
+                Log.d(TAG, "DOCUMENTO AGREGADO CORRECTAMENTE")
+                val action = AddBookFragmentDirections.actionAddBookFragmentToCatalogueFragment()
+                binding.root.findNavController().navigate(action)
+            }
             .addOnFailureListener { e -> Log.w(TAG, "ERROR AL CARGAR EL DOCUMENTO", e) }
     }
 

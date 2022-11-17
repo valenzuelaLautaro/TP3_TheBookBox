@@ -9,7 +9,7 @@
         android:id="@+id/googleLogin"
         android:name="com.tp3.tp3_thebookbox.fragments.GoogleLoginFragment"
         android:label="fragment_google_login"
-        tools:layout="@layout/fragment_google_login" >
+        tools:layout="@layout/fragment_google_login">
         <action
             android:id="@+id/action_googleLogin_to_mainActivity"
             app:destination="@id/mainActivity" />
@@ -18,7 +18,7 @@
         android:id="@+id/mainActivity"
         android:name="com.tp3.tp3_thebookbox.activities.MainActivity"
         android:label="activity_main"
-        tools:layout="@layout/activity_main" >
+        tools:layout="@layout/activity_main">
         <argument
             android:name="usuario"
             app:argType="com.google.firebase.auth.FirebaseUser"
