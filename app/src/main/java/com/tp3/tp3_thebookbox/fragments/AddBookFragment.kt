@@ -90,7 +90,7 @@ class AddBookFragment : Fragment() {
                     user.email)
 
                 if(viewModel.validateForm(binding)){
-                    viewModel.publishBook(book)
+                    viewModel.publishBook(book,binding)
                     println("TODO OK")
                 }
             } else{
