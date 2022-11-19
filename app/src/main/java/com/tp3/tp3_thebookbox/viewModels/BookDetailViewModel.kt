@@ -11,6 +11,7 @@ import com.google.firebase.ktx.Firebase
 import com.tp3.tp3_thebookbox.databinding.FragmentAddBookBinding
 import com.tp3.tp3_thebookbox.databinding.FragmentBookDetailBinding
 import com.tp3.tp3_thebookbox.entities.Book
+import com.tp3.tp3_thebookbox.fragments.AddBookFragmentDirections
 import com.tp3.tp3_thebookbox.fragments.BookDetailFragmentDirections
 import com.tp3.tp3_thebookbox.fragments.MyAccountFragmentDirections
 
@@ -26,11 +27,15 @@ class BookDetailViewModel : ViewModel() {
         binding.bookDetailYear.text = book.edicion.toString()
     }
 
-    fun addFavouriteBook(book: Book, email: String){
+    fun addFavouriteBook(book: Book, email: String,binding: FragmentBookDetailBinding){
         db.collection("books")
             .document(book.id)
             .update("usersFav", FieldValue.arrayUnion(email))
-            .addOnSuccessListener { Log.d(TAG, "Se ha añadido correctamente a favoritos.") }
+            .addOnSuccessListener {
+                Log.d(TAG, "Se ha añadido correctamente a favoritos.")
+                val action = BookDetailFragmentDirections.actionBookDetailFragmentToFavouriteBooksFragment()
+                binding.root.findNavController().navigate(action)
+            }
             .addOnFailureListener { e -> Log.w(TAG, "No se pudo añadir a favoritos.", e) }
     }
 

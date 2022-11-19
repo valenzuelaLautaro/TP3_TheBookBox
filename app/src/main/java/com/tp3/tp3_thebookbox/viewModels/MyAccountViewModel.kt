@@ -4,6 +4,7 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
@@ -42,7 +43,8 @@ class MyAccountViewModel : ViewModel() {
         binding.root.findNavController().navigate(action)
     }
     fun logout (binding: FragmentMyAccountBinding){
-        var action = MyAccountFragmentDirections.actionMyAccountFragmentToLogInFragment2()
+        Firebase.auth.signOut()
+        var action = MyAccountFragmentDirections.actionMyAccountFragmentToLoginActivity()
         binding.root.findNavController().navigate(action)
     }
 }

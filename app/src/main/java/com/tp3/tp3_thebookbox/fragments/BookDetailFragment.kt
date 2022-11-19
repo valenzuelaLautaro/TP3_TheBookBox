@@ -41,14 +41,14 @@ class BookDetailFragment : Fragment() {
         }
 
         binding.addFavorites.setOnClickListener {
-            viewModel.addFavouriteBook(book, email)
+            viewModel.addFavouriteBook(book, email, binding)
         }
 
         binding.deleteButton.setOnClickListener {
             viewModel.deleteBook(BookDetailFragmentArgs.fromBundle(requireArguments()).bookSelected)
         }
         binding.addFavorites.setOnClickListener {
-            viewModel.addFavouriteBook(BookDetailFragmentArgs.fromBundle(requireArguments()).bookSelected, email)
+            viewModel.addFavouriteBook(BookDetailFragmentArgs.fromBundle(requireArguments()).bookSelected, email , binding)
         }
     }
 }

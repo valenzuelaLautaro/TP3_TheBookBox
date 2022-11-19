@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_myAccountFragment_to_logInFragment2"
             app:destination="@id/logInFragment" />
+        <action
+            android:id="@+id/action_myAccountFragment_to_loginActivity"
+            app:destination="@id/loginActivity" />
     </fragment>
     <fragment
         android:id="@+id/favouriteBooksFragment"
@@ -49,6 +52,9 @@
         <action
             android:id="@+id/action_bookDetailFragment_to_commentFragment"
             app:destination="@id/commentFragment" />
+        <action
+            android:id="@+id/action_bookDetailFragment_to_favouriteBooksFragment"
+            app:destination="@id/favouriteBooksFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -89,7 +95,7 @@
         android:id="@+id/addBookFragment"
         android:name="com.tp3.tp3_thebookbox.fragments.AddBookFragment"
         android:label="fragment_add_book"
-        tools:layout="@layout/fragment_add_book" >
+        tools:layout="@layout/fragment_add_book">
         <action
             android:id="@+id/action_addBookFragment_to_catalogueFragment"
             app:destination="@id/catalogueFragment" />
@@ -107,9 +113,14 @@
         android:id="@+id/commentFragment"
         android:name="com.tp3.tp3_thebookbox.fragments.CommentFragment"
         android:label="fragment_comment"
-        tools:layout="@layout/fragment_comment" >
+        tools:layout="@layout/fragment_comment">
         <argument
             android:name="book"
             app:argType="com.tp3.tp3_thebookbox.entities.Book" />
     </fragment>
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.tp3.tp3_thebookbox.activities.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
 </navigation>
