@@ -4,6 +4,7 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -36,6 +37,8 @@ class MyAccountViewModel : ViewModel() {
         binding.userPass.text = user?.password
         binding.userBirth.text = user?.fechaNacimiento.toString()
         binding.userPhone.text = user?.telefono
+        val photo = binding.myAccountImage
+        Glide.with(binding.root.context).load(user?.urlImage).centerCrop().into(photo)
     }
 
     fun navigateToBookList (binding: FragmentMyAccountBinding){

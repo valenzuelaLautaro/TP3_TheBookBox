@@ -15,7 +15,7 @@ class MyAccountFragment : Fragment() {
 
     private lateinit var binding: FragmentMyAccountBinding
     private val viewModel: MyAccountViewModel by viewModels()
-    private val email: String = "lautarovalenzuela94@gmail.com"
+    private val email: String = "martin.blasson@gmail.com"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -50,4 +50,9 @@ class BookDetailViewModel : ViewModel() {
         var action = BookDetailFragmentDirections.actionBookDetailFragmentToCommentFragment(book)
         binding.root.findNavController().navigate(action)
     }
+
+    fun navigateToCatalogue(binding: FragmentBookDetailBinding) {
+        var action = BookDetailFragmentDirections.actionBookDetailFragmentToCatalogueFragment()
+        binding.root.findNavController().navigate(action)
+    }
 }

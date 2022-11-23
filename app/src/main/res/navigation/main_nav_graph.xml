@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_bookDetailFragment_to_favouriteBooksFragment"
             app:destination="@id/favouriteBooksFragment" />
+        <action
+            android:id="@+id/action_bookDetailFragment_to_catalogueFragment"
+            app:destination="@id/catalogueFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -117,6 +120,9 @@
         <argument
             android:name="book"
             app:argType="com.tp3.tp3_thebookbox.entities.Book" />
+        <action
+            android:id="@+id/action_commentFragment_to_bookDetailFragment"
+            app:destination="@id/bookDetailFragment" />
     </fragment>
     <activity
         android:id="@+id/loginActivity"

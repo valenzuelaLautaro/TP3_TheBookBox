@@ -48,6 +48,7 @@ class CommentFragment : Fragment() {
 
             if(viewModel.validateForm(binding)){
                 viewModel.addComment(comment)
+                viewModel.navigateToBookDetail(book, binding)
             }
         }
     }
