@@ -30,7 +30,7 @@ class AddBookFragment : Fragment() {
     var downloadUri : String? = null
 
     // usuario Hardcodeado para crear un libro nuevo
-    private val user = User("lautaro", "lautarovalenzuela94@gmail.com", "callefalsa123", "www.nada.png", Date(12/10/2002), "1166517457")
+    private val email : String = "martin.blasson@gmail.com"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -87,7 +87,7 @@ class AddBookFragment : Fragment() {
                     binding.inputGenero.text.toString(),
                     binding.inputEditorial.text.toString(),
                     downloadUri.toString(),
-                    user.email)
+                    email)
 
                 if(viewModel.validateForm(binding)){
                     viewModel.publishBook(book,binding)

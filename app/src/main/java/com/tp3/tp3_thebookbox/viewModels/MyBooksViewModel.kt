@@ -25,11 +25,11 @@ class MyBooksViewModel : ViewModel() {
     val db = Firebase.firestore
 
     // creo mi usuario
-    private val user = User("lautaro", "lautarovalenzuela94@gmail.com", "callefalsa123", "www.nada.png", Date(12 / 10 / 2002), "1166517457")
+    private val email : String = "martin.blasson@gmail.com"
 
     fun getMyBooks(binding: FragmentMyBooksBinding){
         db.collection("books")
-            .whereEqualTo("idUser", user.email)
+            .whereEqualTo("idUser", email)
             .get()
             .addOnSuccessListener { resultado ->
                 bookList.clear()

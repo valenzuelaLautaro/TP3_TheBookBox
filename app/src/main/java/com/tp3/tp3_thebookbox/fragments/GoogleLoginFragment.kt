@@ -13,10 +13,6 @@ import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.firebase.auth.FirebaseAuth
 import com.tp3.tp3_thebookbox.databinding.FragmentGoogleLoginBinding
 
-
-
-
-
 class GoogleLoginFragment : Fragment() {
 
     //private lateinit var viewModel: GoogleLoginViewModel

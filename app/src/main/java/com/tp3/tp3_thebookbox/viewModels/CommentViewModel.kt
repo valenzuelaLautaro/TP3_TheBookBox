@@ -59,8 +59,9 @@ class CommentViewModel : ViewModel() {
             .get()
             .addOnSuccessListener { resultado ->
                 for(document in resultado){
-                    println("COMENTARIO: " + document.toObject<Comment>().toString())
-                    commentList.add(document.toObject<Comment>())
+                    var comment : Comment = document.toObject<Comment>()
+                    println("COMENTARIO: " + comment)
+                    commentList.add(comment)
                 }
                 Log.d(TAG, "COMENTARIOS " + commentList.toString())
 
