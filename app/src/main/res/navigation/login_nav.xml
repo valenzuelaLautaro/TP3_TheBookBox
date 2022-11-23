@@ -18,10 +18,9 @@
         android:id="@+id/mainActivity"
         android:name="com.tp3.tp3_thebookbox.activities.MainActivity"
         android:label="activity_main"
-        tools:layout="@layout/activity_main">
+        tools:layout="@layout/activity_main" >
         <argument
             android:name="usuario"
-            app:argType="com.google.firebase.auth.FirebaseUser"
-            app:nullable="true" />
+            app:argType="com.google.firebase.auth.FirebaseUser" />
     </activity>
 </navigation>
